@@ -1,0 +1,204 @@
+/* Styles généraux */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  /* Styles du header */
+  .header {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 16px;
+    padding: 8px;
+    border-radius: 50%;
+  }
+  
+  .menu-button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .dashboard-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-avatar {
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 50%;
+    padding: 8px;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .user-details {
+    display: block;
+  }
+  
+  @media (max-width: 768px) {
+    .user-details {
+      display: none;
+    }
+  }
+  
+  .username {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .user-email {
+    font-size: 12px;
+    color: #6b7280;
+  }
+  
+  .logout-button {
+    display: flex;
+    align-items: center;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .logout-button:hover {
+    background-color: #dc2626;
+  }
+  
+  .logout-icon {
+    margin-right: 4px;
+  }
+  
+  /* Styles du main container */
+  .main-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  /* Styles du drawer */
+  .drawer {
+    background-color: white;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .drawer-open {
+    width: 250px;
+  }
+  
+  .drawer-closed {
+    width: 0;
+  }
+  
+  @media (min-width: 768px) {
+    .drawer-closed {
+      width: 64px;
+    }
+  }
+  
+  .drawer-content {
+    padding: 16px;
+  }
+  
+  .drawer-title {
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .drawer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .nav-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .nav-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .nav-icon {
+    color: #4b5563;
+  }
+  
+  .nav-text {
+    margin-left: 12px;
+  }
+  
+  /* Styles de la zone de contenu */
+  .content-area {
+    flex: 1;
+    padding: 24px;
+    overflow: auto;
+  }
+  
+  .welcome-card {
+    background-color: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .welcome-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .welcome-text {
+    color: #6b7280;
+  }
