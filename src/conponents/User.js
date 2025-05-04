@@ -6,11 +6,13 @@ const UserPage = () => {
   const [error, setError] = useState('');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    userRole: ''
+    userRole: 'PATIENT',
+    password: '' // Ajout du champ password pour la création
   });
 
   // Récupérer les utilisateurs depuis l'API
@@ -26,6 +28,17 @@ const UserPage = () => {
 
     fetchUsers();
   }, []);
+
+  // Fonction pour ouvrir le modal de création
+  const openCreateModal = () => {
+    setFormData({
+      name: '',
+      email: '',
+      userRole: 'PATIENT',
+      password: ''
+    });
+    setShowCreateModal(true);
+  };
 
   // Fonction pour ouvrir le modal de mise à jour
   const openEditModal = (user) => {
@@ -44,6 +57,26 @@ const UserPage = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  // Fonction pour créer un utilisateur
+  const handleCreate = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:8081/api/auth/signup', {
+        name: formData.name,
+        email: formData.email,
+        userRole: formData.userRole,
+        password: formData.password
+      });
+      
+      // Ajouter le nouvel utilisateur à la liste
+      setUsers([...users, response.data]);
+      
+      setShowCreateModal(false);
+    } catch (err) {
+      setError('Erreur lors de la création de l\'utilisateur');
+    }
   };
 
   // Fonction pour mettre à jour un utilisateur
@@ -88,7 +121,14 @@ const UserPage = () => {
       {error && <p style={styles.error}>{error}</p>}
 
       <div style={styles.card}>
-        <h2 style={styles.cardTitle}>Liste des utilisateurs</h2>
+        <div style={styles.cardHeader}>
+          <h2 style={styles.cardTitle}>Liste des utilisateurs</h2>
+          <button 
+            onClick={openCreateModal} 
+            style={styles.createButton}>
+            + Créer un utilisateur
+          </button>
+        </div>
         
         {users.length === 0 ? (
           <p style={styles.emptyMessage}>Aucun utilisateur trouvé.</p>
@@ -134,6 +174,91 @@ const UserPage = () => {
           </div>
         )}
       </div>
+
+      {/* Modal de création d'utilisateur */}
+      {showCreateModal && (
+        <div style={styles.modalOverlay}>
+          <div style={styles.modal}>
+            <h3 style={styles.modalTitle}>Créer un nouvel utilisateur</h3>
+            <form onSubmit={handleCreate}>
+              <div style={styles.formGroup}>
+                <label style={styles.label} htmlFor="name">
+                  Nom
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  style={styles.input}
+                  required
+                />
+              </div>
+              <div style={styles.formGroup}>
+                <label style={styles.label} htmlFor="email">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  style={styles.input}
+                  required
+                />
+              </div>
+              <div style={styles.formGroup}>
+                <label style={styles.label} htmlFor="password">
+                  Mot de passe
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  style={styles.input}
+                  required
+                />
+              </div>
+              <div style={styles.formGroup}>
+                <label style={styles.label} htmlFor="userRole">
+                  Rôle
+                </label>
+                <select
+                  id="userRole"
+                  name="userRole"
+                  value={formData.userRole}
+                  onChange={handleChange}
+                  style={styles.select}
+                >
+                  <option value="PATIENT">Patient</option>
+                  <option value="SECRETAIRE">Secrétaire</option>
+                  <option value="DENTISTE">Dentiste</option>
+                  <option value="ADMIN">Administrateur</option>
+                </select>
+              </div>
+              <div style={styles.modalActions}>
+                <button
+                  type="button"
+                  onClick={() => setShowCreateModal(false)}
+                  style={styles.cancelButton}
+                >
+                  Annuler
+                </button>
+                <button
+                  type="submit"
+                  style={styles.saveButton}
+                >
+                  Créer
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Modal de confirmation de suppression */}
       {showDeleteModal && (
@@ -207,7 +332,9 @@ const UserPage = () => {
                   onChange={handleChange}
                   style={styles.select}
                 >
-                  <option value="USER">Utilisateur</option>
+                  <option value="PATIENT">Patient</option>
+                  <option value="SECRETAIRE">Secrétaire</option>
+                  <option value="DENTISTE">Dentiste</option>
                   <option value="ADMIN">Administrateur</option>
                 </select>
               </div>
@@ -266,12 +393,28 @@ const styles = {
     boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
     overflow: 'hidden',
   },
-  cardTitle: {
-    fontSize: '18px',
-    fontWeight: 'bold',
+  cardHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: '16px',
     backgroundColor: '#f5f7fa',
     borderBottom: '1px solid #e6e9ed',
+  },
+  cardTitle: {
+    fontSize: '18px',
+    fontWeight: 'bold',
+    margin: 0,
+  },
+  createButton: {
+    padding: '8px 16px',
+    backgroundColor: '#2ecc71',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    fontWeight: 'bold',
+    fontSize: '14px',
   },
   tableContainer: {
     overflowX: 'auto',
