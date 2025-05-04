@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Importation de useNavigate
 
 const UserPage = () => {
   const [users, setUsers] = useState([]);
@@ -12,8 +13,16 @@ const UserPage = () => {
     name: '',
     email: '',
     userRole: 'PATIENT',
-    password: '' // Ajout du champ password pour la création
+    password: ''
   });
+  
+  // Ajout du hook useNavigate pour la navigation
+  const navigate = useNavigate();
+
+  // Fonction pour retourner à la page d'accueil
+  const navigateToHome = () => {
+    navigate('/'); // Redirection vers la page d'accueil
+  };
 
   // Récupérer les utilisateurs depuis l'API
   useEffect(() => {
@@ -115,7 +124,15 @@ const UserPage = () => {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Page de l'Utilisateur</h1>
+      <div style={styles.header}>
+        <h1 style={styles.title}>Page de l'Utilisateur</h1>
+        {/* Bouton pour revenir à l'accueil */}
+        <button 
+          onClick={navigateToHome} 
+          style={styles.homeButton}>
+          ← Retour à l'accueil
+        </button>
+      </div>
       <p style={styles.subtitle}>Bienvenue sur la page de votre profil utilisateur.</p>
 
       {error && <p style={styles.error}>{error}</p>}
@@ -361,107 +378,136 @@ const UserPage = () => {
   );
 };
 
-// Styles CSS en JavaScript
+// Styles
 const styles = {
   container: {
-    maxWidth: '1200px',
-    margin: '0 auto',
     padding: '20px',
     fontFamily: 'Arial, sans-serif',
+    maxWidth: '1200px',
+    margin: '0 auto'
+  },
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '10px'
   },
   title: {
-    fontSize: '24px',
+    fontSize: '28px',
     fontWeight: 'bold',
-    color: '#2c3e50',
-    marginBottom: '16px',
+    color: '#333',
+    marginBottom: '5px'
   },
   subtitle: {
     fontSize: '16px',
-    color: '#7f8c8d',
-    marginBottom: '24px',
+    color: '#666',
+    marginBottom: '30px'
   },
   error: {
-    color: '#e74c3c',
-    backgroundColor: '#fadbd8',
+    color: '#d32f2f',
     padding: '10px',
+    backgroundColor: '#ffebee',
     borderRadius: '4px',
-    marginBottom: '16px',
+    marginBottom: '20px'
+  },
+  homeButton: {
+    backgroundColor: '#2196f3',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    padding: '10px 15px',
+    fontSize: '14px',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
+    transition: 'background-color 0.3s'
   },
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     borderRadius: '8px',
-    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-    overflow: 'hidden',
+    boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+    overflow: 'hidden'
   },
   cardHeader: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '16px',
-    backgroundColor: '#f5f7fa',
-    borderBottom: '1px solid #e6e9ed',
+    padding: '15px 20px',
+    borderBottom: '1px solid #eee'
   },
   cardTitle: {
-    fontSize: '18px',
+    fontSize: '20px',
     fontWeight: 'bold',
-    margin: 0,
+    color: '#333',
+    margin: 0
   },
   createButton: {
-    padding: '8px 16px',
-    backgroundColor: '#2ecc71',
-    color: '#fff',
+    backgroundColor: '#4caf50',
+    color: 'white',
     border: 'none',
     borderRadius: '4px',
-    cursor: 'pointer',
-    fontWeight: 'bold',
+    padding: '8px 16px',
     fontSize: '14px',
+    cursor: 'pointer',
+    boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
+    transition: 'background-color 0.3s'
+  },
+  emptyMessage: {
+    padding: '20px',
+    textAlign: 'center',
+    color: '#666'
   },
   tableContainer: {
-    overflowX: 'auto',
+    overflowX: 'auto'
   },
   table: {
     width: '100%',
-    borderCollapse: 'collapse',
+    borderCollapse: 'collapse'
   },
   th: {
-    padding: '12px 16px',
+    backgroundColor: '#f5f5f5',
+    padding: '12px 15px',
     textAlign: 'left',
-    borderBottom: '2px solid #e6e9ed',
     fontSize: '14px',
     fontWeight: 'bold',
-    color: '#5e6977',
+    color: '#333',
+    borderBottom: '2px solid #ddd'
   },
   tr: {
-    borderBottom: '1px solid #e6e9ed',
+    borderBottom: '1px solid #eee'
   },
   td: {
-    padding: '12px 16px',
+    padding: '12px 15px',
     fontSize: '14px',
-    color: '#333',
+    color: '#333'
   },
   badge: {
-    display: 'inline-block',
+    backgroundColor: '#e0f2f1',
+    color: '#00796b',
     padding: '4px 8px',
-    borderRadius: '12px',
+    borderRadius: '4px',
     fontSize: '12px',
-    fontWeight: 'bold',
-    backgroundColor: '#e1f5fe',
-    color: '#0288d1',
+    fontWeight: 'bold'
   },
   editButton: {
+    backgroundColor: '#2196f3',
+    color: 'white',
     border: 'none',
-    background: 'none',
-    color: '#3498db',
-    cursor: 'pointer',
-    fontSize: '14px',
-    marginRight: '16px',
+    borderRadius: '4px',
+    padding: '6px 12px',
+    marginRight: '8px',
+    fontSize: '12px',
+    cursor: 'pointer'
   },
   deleteButton: {
+    backgroundColor: '#f44336',
+    color: 'white',
     border: 'none',
-    background: 'none',
-    color: '#e74c3c',
-    cursor: 'pointer',
-    fontSize: '14px',
+    borderRadius: '4px',
+    padding: '6px 12px',
+    fontSize: '12px',
+    cursor: 'pointer'
   },
   modalOverlay: {
     position: 'fixed',
@@ -469,91 +515,91 @@ const styles = {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0,0,0,0.5)',
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 1000,
+    alignItems: 'center',
+    zIndex: 1000
   },
   modal: {
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     borderRadius: '8px',
-    padding: '24px',
-    width: '100%',
-    maxWidth: '500px',
-    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)',
+    padding: '20px',
+    width: '500px',
+    maxWidth: '90%',
+    boxShadow: '0 5px 15px rgba(0,0,0,0.2)'
   },
   modalTitle: {
-    fontSize: '18px',
+    fontSize: '20px',
     fontWeight: 'bold',
-    marginBottom: '16px',
-    color: '#2c3e50',
+    color: '#333',
+    marginBottom: '20px'
   },
   modalText: {
     fontSize: '14px',
-    color: '#5e6977',
-    marginBottom: '24px',
-    lineHeight: '1.5',
+    color: '#666',
+    marginBottom: '20px'
+  },
+  formGroup: {
+    marginBottom: '15px'
+  },
+  label: {
+    display: 'block',
+    marginBottom: '5px',
+    fontSize: '14px',
+    fontWeight: 'bold',
+    color: '#333'
+  },
+  input: {
+    width: '100%',
+    padding: '10px',
+    fontSize: '14px',
+    border: '1px solid #ddd',
+    borderRadius: '4px',
+    boxSizing: 'border-box'
+  },
+  select: {
+    width: '100%',
+    padding: '10px',
+    fontSize: '14px',
+    border: '1px solid #ddd',
+    borderRadius: '4px',
+    backgroundColor: 'white',
+    boxSizing: 'border-box'
   },
   modalActions: {
     display: 'flex',
     justifyContent: 'flex-end',
-    gap: '12px',
+    marginTop: '20px'
   },
   cancelButton: {
-    padding: '8px 16px',
-    backgroundColor: '#e6e9ed',
-    color: '#5e6977',
+    backgroundColor: '#e0e0e0',
+    color: '#333',
     border: 'none',
     borderRadius: '4px',
-    cursor: 'pointer',
-  },
-  confirmDeleteButton: {
     padding: '8px 16px',
-    backgroundColor: '#e74c3c',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
+    marginRight: '10px',
+    fontSize: '14px',
+    cursor: 'pointer'
   },
   saveButton: {
-    padding: '8px 16px',
-    backgroundColor: '#3498db',
-    color: '#fff',
+    backgroundColor: '#4caf50',
+    color: 'white',
     border: 'none',
     borderRadius: '4px',
-    cursor: 'pointer',
-  },
-  formGroup: {
-    marginBottom: '16px',
-  },
-  label: {
-    display: 'block',
-    marginBottom: '8px',
+    padding: '8px 16px',
     fontSize: '14px',
-    fontWeight: 'bold',
-    color: '#5e6977',
+    cursor: 'pointer'
   },
-  input: {
-    width: '100%',
-    padding: '8px 12px',
-    fontSize: '14px',
-    border: '1px solid #dcdfe6',
+  confirmDeleteButton: {
+    backgroundColor: '#f44336',
+    color: 'white',
+    border: 'none',
     borderRadius: '4px',
-    boxSizing: 'border-box',
-  },
-  select: {
-    width: '100%',
-    padding: '8px 12px',
+    padding: '8px 16px',
     fontSize: '14px',
-    border: '1px solid #dcdfe6',
-    borderRadius: '4px',
-    backgroundColor: '#fff',
-  },
-  emptyMessage: {
-    padding: '16px',
-    color: '#7f8c8d',
-  },
+    cursor: 'pointer'
+  }
 };
 
 export default UserPage;
