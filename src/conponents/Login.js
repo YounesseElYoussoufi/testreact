@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { login } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
-import './Login.css'; // Fichier CSS séparé pour les styles
+import './Login.css'; // Fichier CSS avec les styles améliorés
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -86,10 +86,27 @@ function Login() {
     setShowPassword(!showPassword);
   };
 
+  // SVG Logo du cabinet dentaire - Dent humaine réaliste
+  const DentalLogo = () => (
+    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+      {/* Racines de la dent */}
+      <path fill="#38b6ff" d="M256,380c-10,40-30,80-60,85c-25,4-40-20-45-50c-5-35,5-70-20-85c-25,15-15,50-20,85c-5,30-20,54-45,50c-30-5-50-45-60-85c-15-60-15-120,5-170c15-35,35-65,65-85c15-10,35-15,55-15h0c20,0,40,5,55,15c30,20,50,50,65,85C266,260,266,320,256,380z"/>
+      {/* Email de la dent */}
+      <path fill="#ffffff" d="M256,155c-40-30-80-30-120,0c-5,5-5,15,0,20c40,30,80,30,120,0C261,170,261,160,256,155z"/>
+      {/* Contour supérieur */}
+      <path fill="#ffffff" d="M166,120c0,0,30-15,90-15s90,15,90,15c5,2,10-1,12-6c2-5-1-10-6-12c0,0-35-17-96-17s-96,17-96,17c-5,2-8,7-6,12C157,114,161,118,166,120z"/>
+    </svg>
+  );
+
   return (
     <div className="login-container">
       <div className="login-card">
-        <h2 className="login-title">Connexion</h2>
+        <div className="logo-container">
+          <div className="logo">
+            <DentalLogo />
+          </div>
+        </div>
+        <h2 className="login-title">Connexion à votre espace</h2>
         
         {loginError && (
           <div className="error-message">
@@ -150,7 +167,10 @@ function Login() {
             </button>
           </div>
           
-       
+          <div className="form-links">
+            <a href="/forgot-password" className="forgot-password-link">Mot de passe oublié ?</a>
+            <a href="/register" className="register-link">Nouveau patient ?</a>
+          </div>
         </form>
       </div>
     </div>
