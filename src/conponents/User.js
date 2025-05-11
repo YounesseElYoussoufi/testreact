@@ -253,7 +253,7 @@ const UserPage = () => {
                 >
                   <option value="PATIENT">Patient</option>
                   <option value="SECRETAIRE">Secrétaire</option>
-                  <option value="DENTISTE">Dentiste</option>
+                  <option value="CABINET_DENTAIRE">CABINET_DENTAIRE</option>
                   <option value="ADMIN">Administrateur</option>
                 </select>
               </div>
@@ -350,7 +350,7 @@ const UserPage = () => {
                   style={styles.select}
                 >
                   <option value="PATIENT">Patient</option>
-                  <option value="SECRETAIRE">Secrétaire</option>
+                  <option value="CABINET_DENTAIRE">CABINET_DENTAIRE</option>
                   <option value="DENTISTE">Dentiste</option>
                   <option value="ADMIN">Administrateur</option>
                 </select>

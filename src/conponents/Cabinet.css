@@ -1,0 +1,349 @@
+/* Cabinet.css - Styles pour la page de gestion des cabinets dentaires */
+
+.cabinet-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #333;
+  }
+  
+  .cabinet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e1e1e1;
+    margin-bottom: 30px;
+  }
+  
+  .cabinet-header h1 {
+    font-size: 1.8rem;
+    color: #38b6ff;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+  }
+  
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+  
+  .user-info span {
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .logout-button {
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  
+  .logout-button:hover {
+    background-color: #e9e9e9;
+  }
+  
+  .cabinet-content {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+  }
+  
+  .cabinet-action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+  
+  .action-button {
+    background-color: #38b6ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .action-button:hover {
+    background-color: #2493d1;
+  }
+  
+  .cabinet-form-container {
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #ebebeb;
+  }
+  
+  .cabinet-form-container h3 {
+    margin-top: 0;
+    color: #38b6ff;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+  
+  .cabinet-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+  }
+  
+  .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .cabinet-form label {
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #555;
+    font-size: 0.95rem;
+  }
+  
+  .cabinet-form input,
+  .cabinet-form textarea {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+  }
+  
+  .cabinet-form input:focus,
+  .cabinet-form textarea:focus {
+    border-color: #38b6ff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(56, 182, 255, 0.2);
+  }
+  
+  .input-error {
+    border-color: #e74c3c !important;
+    background-color: #fdf5f5;
+  }
+  
+  .error-text {
+    color: #e74c3c;
+    font-size: 0.8rem;
+    margin-top: 4px;
+  }
+  
+  .form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .cancel-button {
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  
+  .cancel-button:hover {
+    background-color: #e9e9e9;
+  }
+  
+  .submit-button {
+    background-color: #38b6ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .submit-button:hover {
+    background-color: #2493d1;
+  }
+  
+  .cabinets-list h3 {
+    color: #38b6ff;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+  
+  .loading,
+  .no-data {
+    text-align: center;
+    padding: 30px;
+    color: #777;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+  }
+  
+  .cabinet-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .cabinet-card {
+    border: 1px solid #ebebeb;
+    border-radius: 6px;
+    padding: 20px;
+    background-color: #fafafa;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .cabinet-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cabinet-card h4 {
+    color: #38b6ff;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #e1e1e1;
+    padding-bottom: 10px;
+  }
+  
+  .cabinet-info {
+    margin-bottom: 15px;
+  }
+  
+  .cabinet-info p {
+    margin: 8px 0;
+  }
+  
+  .cabinet-info strong {
+    color: #555;
+  }
+  
+  .cabinet-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e1e1e1;
+  }
+  
+  .edit-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .edit-button:hover {
+    background-color: #3d8b40;
+  }
+  
+  .delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .delete-button:hover {
+    background-color: #d32f2f;
+  }
+  
+  .error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .cabinet-header {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .cabinet-header h1 {
+      font-size: 1.5rem;
+    }
+    
+    .user-info {
+      align-items: center;
+      margin-top: 10px;
+    }
+    
+    .form-row {
+      flex-direction: column;
+    }
+    
+    .cabinet-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .cabinet-container {
+      padding: 10px;
+    }
+    
+    .cabinet-content {
+      padding: 15px;
+    }
+    
+    .cabinet-form-container {
+      padding: 15px;
+    }
+    
+    .cabinet-actions {
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .edit-button, .delete-button {
+      width: 100%;
+    }
+  }

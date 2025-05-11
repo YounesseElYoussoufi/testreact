@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './Home.css';
+import './Admin.css';
 import { useNavigate } from 'react-router-dom';
 
-function Home() {
+function Admin() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(true); // Par défaut, le drawer est ouvert
   const username = localStorage.getItem('username');
   const email = localStorage.getItem('email');
@@ -98,4 +98,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Admin;

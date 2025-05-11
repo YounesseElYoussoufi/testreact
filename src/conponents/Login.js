@@ -67,11 +67,26 @@ function Login() {
       });
       
       // Stocker les données utilisateur dans localStorage
-      localStorage.setItem('token', response.data.jwt);
-      localStorage.setItem('username', response.data.name);
-      localStorage.setItem('email', formData.email);
-      
-      navigate('/');
+localStorage.setItem('token', response.data.jwt);
+localStorage.setItem('username', response.data.name);
+localStorage.setItem('email', formData.email);
+localStorage.setItem('userRole', response.data.userRole); // <-- ajout du rôle
+
+// Redirection en fonction du rôle
+switch (response.data.userRole ) {
+  case 'ADMIN':
+    navigate('/admin');
+    break;
+  case 'PATIENT':
+    navigate('/patient');
+    break;
+  case 'CABINET_DENTAIRE':
+    navigate('/cabinet');
+    break;
+  default:
+    navigate('/');
+}
+
     } catch (error) {
       const errorMessage = error.response?.data?.message || 
                            error.response?.data?.error || 
